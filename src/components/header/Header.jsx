@@ -1,13 +1,27 @@
 import styles from './Header.module.css';
 
-const Header = () => {
+const Header = ({ filter, setFilter }) => {
+  const filterOptions = ['default', 'name', 'price'];
   return (
     <div className={styles.header}>
       <span className={styles.headerTitle}>Desserts</span>
       <div className={styles.buttons}>
-        <button className={styles.button}>Default</button>
+        {filterOptions.map(option => (
+          <button
+            key={option}
+            className={`${styles.button} ${
+              filter === option && `${styles.buttonActive}`
+            }`}
+            onClick={() => setFilter(option)}
+          >
+            {option}
+          </button>
+        ))}
+        {/* <button className={styles.button} onClick={() => setFilter(option)}>
+          Default
+        </button>
         <button className={styles.button}>Name</button>
-        <button className={styles.button}>Price</button>
+        <button className={styles.button}>Price</button> */}
       </div>
     </div>
   );
