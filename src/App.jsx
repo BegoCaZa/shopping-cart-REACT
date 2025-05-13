@@ -8,7 +8,7 @@ const App = () => {
   // const [cart, setCart] = useState([]);
   const [filter, setFilter] = useState('default');
 
-  const filteredProducts = filterProducts([...PRODUCTS_INFO], filter);
+  const filteredProducts = filterProducts(filter);
 
   return (
     <>
@@ -22,17 +22,18 @@ const App = () => {
   );
 };
 
-const filterProducts = ([...PRODUCTS_INFO], filter) => {
+const filterProducts = filter => {
+  const productsCopy = [...PRODUCTS_INFO];
   if (filter === 'default') {
-    return [...PRODUCTS_INFO];
+    return productsCopy;
   }
   if (filter === 'name') {
-    return [...PRODUCTS_INFO].sort((a, b) => a.title.localeCompare(b.title));
+    return productsCopy.sort((a, b) => a.title.localeCompare(b.title));
   }
   if (filter === 'price') {
-    return [...PRODUCTS_INFO].sort((a, b) => a.price - b.price);
+    return productsCopy.sort((a, b) => a.price - b.price);
   }
-  return [...PRODUCTS_INFO];
+  return productsCopy;
 };
 
 export default App;
