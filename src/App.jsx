@@ -5,7 +5,7 @@ import ProductsContainer from './components/productsContainer/ProductsContainer'
 import { PRODUCTS_INFO } from './constants/products-info';
 
 const App = () => {
-  // const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([]);
   const [filter, setFilter] = useState('default');
 
   const filteredProducts = filterProducts(filter);
@@ -17,7 +17,11 @@ const App = () => {
         setFilter={setFilter}
         filteredProducts={filteredProducts}
       />
-      <ProductsContainer filteredProducts={filteredProducts} />
+      <ProductsContainer
+        filteredProducts={filteredProducts}
+        cart={cart}
+        setCart={setCart}
+      />
     </>
   );
 };

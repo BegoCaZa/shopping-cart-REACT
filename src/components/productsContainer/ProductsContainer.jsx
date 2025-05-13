@@ -1,7 +1,10 @@
 // import { PRODUCTS_INFO } from '../../constants/products-info';
 import styles from './ProductsContainer.module.css';
 
-const ProductsContainer = ({ filteredProducts }) => {
+const ProductsContainer = ({ filteredProducts, cart, setCart }) => {
+  const productExists = defineIfProductExists(product);
+  //positivo si existe en el carrito
+
   return (
     <>
       <div className={styles.dessertsContainer}>
@@ -14,13 +17,40 @@ const ProductsContainer = ({ filteredProducts }) => {
               <img className={styles.productImage} src={product.imgMobile} />
             </picture>
             {/* //boton */}
-            <button className={styles.buttonAddToCart}>
+            {/* condicional del if que NO ENTIENDO */}
+            {productExists ? (
+              <div>
+                <img
+                  className='icon-add-reduce'
+                  src='/assets/images/icon-decrement-quantity.svg'
+                />
+                <span>1</span>
+                <img
+                  className='icon-add-reduce'
+                  src='/assets/images/icon-increment-quantity.svg'
+                />
+              </div>
+            ) : (
+              <button
+                className={styles.buttonAddToCart}
+                onClick={() => addToCart(setCart, product)}
+              >
+                <img
+                  className={styles.icon}
+                  src='./assets/images/icon-add-to-cart.svg'
+                />
+                <span>Add to cart</span>
+              </button>
+            )}
+            {/* <button
+              className={styles.buttonAddToCart}
+              onClick={() => addToCart(setCart, product)}>
               <img
                 className={styles.icon}
                 src='./assets/images/icon-add-to-cart.svg'
               />
               <span>Add to cart</span>
-            </button>
+            </button> */}
             <div className={styles.cardTextContainer}>
               <span className={styles.productSubtitle}>{product.name}</span>
               <span className={styles.productTitle}>{product.title}</span>
@@ -34,4 +64,18 @@ const ProductsContainer = ({ filteredProducts }) => {
     </>
   );
 };
+
+//tengo que verificar si el producto ya existe en el carrito
+const addToCart = (setCart, product, cart) => {
+  const updatedCart = [...cart, product];
+  setCart(updatedCart); //este es el nuevo carrito
+};
+
+const defineIfProductExists = product => {
+  const productExists = cart.some(item => item.id === product.id); // Busca el producto en el carrito, igual que el otro ejercicio
+  return productExists;
+};
+
+//si existe, devuelve true, si no existe devuelve false
+
 export default ProductsContainer;
