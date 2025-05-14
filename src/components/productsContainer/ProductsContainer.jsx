@@ -1,7 +1,12 @@
 // import { PRODUCTS_INFO } from '../../constants/products-info';
 import styles from './ProductsContainer.module.css';
 
-const ProductsContainer = ({ filteredProducts, cart, setCart }) => {
+const ProductsContainer = ({
+  filteredProducts,
+  cart,
+  setCart,
+  removeFromCart
+}) => {
   //editar el estado del carrito
 
   return (
@@ -32,7 +37,12 @@ const ProductsContainer = ({ filteredProducts, cart, setCart }) => {
                   <button
                     className={styles.buttonAddReduce}
                     onClick={() =>
-                      decrementQuantity(setCart, productExists, cart)
+                      decrementQuantity(
+                        setCart,
+                        productExists,
+                        cart,
+                        removeFromCart
+                      )
                     }
                   >
                     <img
@@ -106,7 +116,7 @@ const incrementQuantity = (setCart, productExists, cart) => {
   setCart(updatedCart);
 };
 
-const decrementQuantity = (setCart, productExists, cart) => {
+const decrementQuantity = (setCart, productExists, cart, removeFromCart) => {
   //eliminar
   if (productExists.quantity === 1) {
     removeFromCart(setCart, productExists, cart);
@@ -124,9 +134,9 @@ const decrementQuantity = (setCart, productExists, cart) => {
   setCart(updatedCart);
 };
 
-const removeFromCart = (setCart, product, cart) => {
-  const updatedCart = cart.filter(item => item.id !== product.id);
-  setCart(updatedCart);
-};
+// const removeFromCart = (setCart, product, cart) => {
+//   const updatedCart = cart.filter(item => item.id !== product.id);
+//   setCart(updatedCart);
+// };
 
 export default ProductsContainer;

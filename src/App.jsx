@@ -14,7 +14,7 @@ const App = () => {
   const filteredProducts = filterProducts(filter);
 
   return (
-    <>
+    <div className='mainContainer'>
       <Header
         filter={filter}
         setFilter={setFilter}
@@ -25,10 +25,15 @@ const App = () => {
           filteredProducts={filteredProducts}
           cart={cart}
           setCart={setCart}
+          removeFromCart={removeFromCart}
         />
-        <ShoppingCart cart={cart} setCart={setCart} />
+        <ShoppingCart
+          cart={cart}
+          setCart={setCart}
+          removeFromCart={removeFromCart}
+        />
       </div>
-    </>
+    </div>
   );
 };
 
@@ -44,6 +49,11 @@ const filterProducts = filter => {
     return productsCopy.sort((a, b) => a.price - b.price);
   }
   return productsCopy;
+};
+
+const removeFromCart = (setCart, product, cart) => {
+  const updatedCart = cart.filter(item => item.id !== product.id);
+  setCart(updatedCart);
 };
 
 export default App;
