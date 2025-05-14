@@ -8,6 +8,8 @@ const App = () => {
   const [cart, setCart] = useState([]);
   const [filter, setFilter] = useState('DEFAULT');
 
+  console.log(cart);
+
   const filteredProducts = filterProducts(filter);
 
   return (

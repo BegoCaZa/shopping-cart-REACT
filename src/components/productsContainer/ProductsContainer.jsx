@@ -26,7 +26,9 @@ const ProductsContainer = ({ filteredProducts, cart, setCart }) => {
                 <div className={styles.buttonAddToCartActive}>
                   <button
                     className={styles.buttonAddReduce}
-                    onClick={() => decrementQuantity(setCart, product, cart)}
+                    onClick={() =>
+                      decrementQuantity(setCart, productExists, cart)
+                    }
                   >
                     <img
                       className={styles.iconAddReduce}
@@ -97,19 +99,29 @@ const incrementQuantity = (setCart, productExists, cart) => {
   });
 
   setCart(updatedCart);
-  console.log(cart);
 };
 
-// const decrementQuantity = (setCart, productExists, cart) => {
-//   if (productExists) {
-//     productExists.quantity -= 1;
-//   }
+const decrementQuantity = (setCart, productExists, cart) => {
+  //eliminar
+  if (productExists.quantity === 1) {
+    removeFromCart(setCart, productExists, cart);
 
-//   if (productExists.quantity <= 0) {
-//     const updatedCart = cart.filter(item => item.id !== product.id);
-//return { ...product, quantity: product.quantity + 1 };
-//     setCart(updatedCart);
-//   }
-// };
+    return;
+  }
+
+  const updatedCart = cart.map(product => {
+    if (product.id === productExists.id) {
+      product.quantity--;
+    }
+    return product;
+  });
+
+  setCart(updatedCart);
+};
+
+const removeFromCart = (setCart, product, cart) => {
+  const updatedCart = cart.filter(item => item.id !== product.id);
+  setCart(updatedCart);
+};
 
 export default ProductsContainer;
