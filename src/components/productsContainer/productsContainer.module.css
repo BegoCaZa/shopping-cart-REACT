@@ -49,9 +49,9 @@
   background-repeat: no-repeat;
 }
 
-/* .in-cart {
-    border: var(--color-primary) solid 3px;
-  } */
+.inCart {
+  border: var(--color-primary) solid 3px;
+}
 
 .buttonAddToCart {
   position: absolute;

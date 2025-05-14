@@ -18,7 +18,12 @@ const ProductsContainer = ({ filteredProducts, cart, setCart }) => {
                 />
                 <source media='(min-width:760px)' srcSet={product.imgTablet} />
                 <source media='(min-width:360px)' srcSet={product.imgMobile} />
-                <img className={styles.productImage} src={product.imgMobile} />
+                <img
+                  className={`${styles.productImage} ${
+                    productExists ? styles.inCart : ''
+                  }`}
+                  src={product.imgMobile}
+                />
               </picture>
               {/* //boton */}
               {/* condicional del if que NO ENTIENDO */}

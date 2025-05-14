@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import Header from './components/header/Header';
 import ProductsContainer from './components/productsContainer/ProductsContainer';
+import ShoppingCart from './components/shoppingCart/ShoppingCart';
 import { PRODUCTS_INFO } from './constants/products-info';
 
 const App = () => {
@@ -19,11 +20,14 @@ const App = () => {
         setFilter={setFilter}
         filteredProducts={filteredProducts}
       />
-      <ProductsContainer
-        filteredProducts={filteredProducts}
-        cart={cart}
-        setCart={setCart}
-      />
+      <div className='main'>
+        <ProductsContainer
+          filteredProducts={filteredProducts}
+          cart={cart}
+          setCart={setCart}
+        />
+        <ShoppingCart cart={cart} setCart={setCart} />
+      </div>
     </>
   );
 };
