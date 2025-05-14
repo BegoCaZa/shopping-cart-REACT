@@ -57,7 +57,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 @media (min-width: 760px) {
@@ -65,6 +65,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    margin-bottom: 100px;
   }
 }
 /* @media (min-width: 1440px) {
