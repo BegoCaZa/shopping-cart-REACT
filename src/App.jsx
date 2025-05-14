@@ -6,7 +6,7 @@ import { PRODUCTS_INFO } from './constants/products-info';
 
 const App = () => {
   const [cart, setCart] = useState([]);
-  const [filter, setFilter] = useState('default');
+  const [filter, setFilter] = useState('DEFAULT');
 
   const filteredProducts = filterProducts(filter);
 
@@ -28,13 +28,13 @@ const App = () => {
 
 const filterProducts = filter => {
   const productsCopy = [...PRODUCTS_INFO];
-  if (filter === 'default') {
+  if (filter === 'DEFAULT') {
     return productsCopy;
   }
-  if (filter === 'name') {
+  if (filter === 'NAME') {
     return productsCopy.sort((a, b) => a.title.localeCompare(b.title));
   }
-  if (filter === 'price') {
+  if (filter === 'PRICE') {
     return productsCopy.sort((a, b) => a.price - b.price);
   }
   return productsCopy;

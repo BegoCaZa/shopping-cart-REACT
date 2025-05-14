@@ -1,7 +1,7 @@
 import styles from './Header.module.css';
 
 const Header = ({ filter, setFilter }) => {
-  const filterOptions = ['default', 'name', 'price'];
+  const filterOptions = ['DEFAULT', 'NAME', 'PRICE'];
   return (
     <div className={styles.header}>
       <span className={styles.headerTitle}>Desserts</span>
