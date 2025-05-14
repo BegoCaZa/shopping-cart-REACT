@@ -2,8 +2,10 @@
 import styles from './ProductsContainer.module.css';
 
 const ProductsContainer = ({ filteredProducts, cart, setCart }) => {
-  const productExists = defineIfProductExists(product);
+  const productExists = defineIfProductExists(product, cart);
   //positivo si existe en el carrito
+
+  //editar el estado del carrito
 
   return (
     <>
@@ -23,17 +25,21 @@ const ProductsContainer = ({ filteredProducts, cart, setCart }) => {
                 <img
                   className='icon-add-reduce'
                   src='/assets/images/icon-decrement-quantity.svg'
+                  onClick={() => decrementQuantity(setCart, product, cart)}
+                  //   falta definir estas funciones
                 />
                 <span>1</span>
                 <img
                   className='icon-add-reduce'
                   src='/assets/images/icon-increment-quantity.svg'
+                  onClick={() => incrementQuantity(setCart, product, cart)}
+                  //   falta definir estas funciones
                 />
               </div>
             ) : (
               <button
                 className={styles.buttonAddToCart}
-                onClick={() => addToCart(setCart, product)}
+                onClick={() => addToCart(setCart, product, cart)}
               >
                 <img
                   className={styles.icon}
@@ -71,9 +77,12 @@ const addToCart = (setCart, product, cart) => {
   setCart(updatedCart); //este es el nuevo carrito
 };
 
-const defineIfProductExists = product => {
+const defineIfProductExists = (product, cart) => {
   const productExists = cart.some(item => item.id === product.id); // Busca el producto en el carrito, igual que el otro ejercicio
   return productExists;
+  //   const defineIfProductExists = (product, cart) => {
+  //     return cart.some(item => item.id === product.id);
+  //   }; lo tenia asi pero me falta que regrese product exist no?
 };
 
 //si existe, devuelve true, si no existe devuelve false
