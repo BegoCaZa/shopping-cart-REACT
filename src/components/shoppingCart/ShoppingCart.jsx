@@ -2,15 +2,26 @@ import styles from './ShoppingCart.module.css';
 
 const ShoppingCart = ({ cart, setCart, removeFromCart }) => {
   //totales para el carrito
-  let totalProducts = 0;
-  for (let i = 0; i < cart.length; i++) {
-    totalProducts += cart[i].quantity;
-  }
-  let totalPrice = 0;
-  for (let i = 0; i < cart.length; i++) {
-    const totalPerProduct = cart[i].quantity * cart[i].price;
-    totalPrice += totalPerProduct;
-  }
+  //   let totalProducts = 0;
+  //usando reeduce
+  //sintaxis array.reduce((acumulador, elemento) => {...}, valorInicial)
+  const totalProducts = cart.reduce(
+    (acc, product) => acc + product.quantity,
+    0
+  );
+  const totalPrice = cart.reduce(
+    (acc, product) => acc + product.quantity * product.price,
+    0
+  );
+
+  //   for (let i = 0; i < cart.length; i++) {
+  //     totalProducts += cart[i].quantity;
+  //   }
+  //   let totalPrice = 0;
+  //   for (let i = 0; i < cart.length; i++) {
+  //     const totalPerProduct = cart[i].quantity * cart[i].price;
+  //     totalPrice += totalPerProduct;
+  //   }
   return (
     <>
       <div className={styles.shoppingCart}>
